@@ -4,9 +4,20 @@
 3 6 9 12 ...
 4 8 12 16 ...
 ... */
+
+import java.util.StringJoiner;
+
 public class Main {
     public static void main(String[] args) {
-        //напишите тут ваш код
 
+        int size = 10;
+
+        for (int i = 1; i <= size; i++) {
+            StringJoiner joiner = new StringJoiner(" ");
+            for (int j = 1; j <= size; j++) {
+                joiner.add(Integer.toString(i * j));
+            }
+            System.out.println(joiner);
+        }
     }
 }
