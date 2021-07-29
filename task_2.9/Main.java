@@ -4,7 +4,16 @@
 
 public class Main {
     public static void main(String[] args) {
-        //напишите тут ваш код
 
+        int[] a = {2, 3, 4, 5};
+
+        boolean result = false;
+        for (int j : a) {
+            if (j == 5) {
+                result = true;
+                break;
+            }
+        }
+        System.out.println(result ? "да" : "нет");
     }
 }
