@@ -17,9 +17,27 @@ public class Main {
 
         String[] a = {"Мама", "Мыла", "Раму"};
 
-        permute(a, 0);
+        print(a);
+        
+//        permute(a, 0);
+    }
+    
+    public static void print(String[] a) {
+        for (int i = 0; i < a.length; i++) { // Перебор первого слова
+            System.out.print(a[i]);
+            for (int j = 0; j < a.length; j++) { // Перебор вперед, за исключением первого
+                if (j != i) System.out.print(a[j]);
+            }
+            System.out.println();
+            System.out.print(a[i]);
+            for (int j = a.length - 1; j >= 0; j--) { // Перебор назад, за исключением первого
+                if (j != i) System.out.print(a[j]);
+            }
+            System.out.println();
+        }
     }
 
+    /*
     public static <T> void permute(T[] a, int n) {
 
         if (n >= a.length - 1) {
@@ -45,4 +63,5 @@ public class Main {
         a[i] = a[j];
         a[j] = t;
     }
+    */
 }
