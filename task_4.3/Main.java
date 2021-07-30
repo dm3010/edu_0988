@@ -16,6 +16,22 @@
 public class Main {
     public static void main(String[] args) {
 
+        Cat kitty = new Cat() {{
+            age = 1;
+            weight = 2;
+            strength = 6;
+        }};
+
+        Cat oldCat = new Cat() {{
+            age = 9;
+            weight = 3;
+            strength = 5;
+        }};
+
+        boolean kittyWin = kitty.fight(oldCat);
+        boolean oldCatWin = oldCat.fight(kitty);
+        System.out.println("Котенок победил старого кота: " + kittyWin);
+        System.out.println("Старый кот победил котенка: " + oldCatWin);
     }
 }
 
@@ -28,6 +44,10 @@ class Cat {
     }
 
     public boolean fight(Cat anotherCat) {
-        //напишите тут ваш код
+        int balance = 0;
+        balance += this.age > anotherCat.age ? 1 : -1; // fight 1: age
+        balance += this.weight > anotherCat.weight ? 1 : -1; // fight 2: weight
+        balance += this.strength > anotherCat.strength ? 1 : -1; // fight 3: strength
+        return balance > 0;
     }
 }
