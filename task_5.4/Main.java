@@ -1,5 +1,4 @@
-  
-/* 
+/*
 1. Ввести путь к файлу с консоли.
 2. Прочитать из него набор чисел.
 3. Вывести на консоль только четные, отсортированные по возрастанию.
@@ -19,8 +18,17 @@
 10
 */
 
+import java.io.*;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        // напишите тут ваш код
+    public static void main(String[] args) throws FileNotFoundException {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите имя файла: ");
+        File file = new File(scanner.next());
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        br.lines().mapToInt(Integer::parseInt).filter(v -> v % 2 == 0).sorted().forEach(System.out::println);
     }
 }
