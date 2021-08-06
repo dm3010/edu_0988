@@ -9,38 +9,36 @@
 Лондон
 Абрамовичи
 Лондон
+Роттенберги
+
+Лондон
 Пример вывода:
-Абрамовичи */
+[Абрамовичи, Роттенберги] */
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-/* 
-Модернизация ПО
-*/
+import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        List<String> list = new ArrayList<>();
+        Map<String, List<String>> cities = new HashMap<>();
+
+        System.out.println("Заполнение данных: ");
         while (true) {
+            String city = scanner.nextLine();
+            if (city.isEmpty()) { break; } // Выход из цикла ввода
             String family = scanner.nextLine();
-            if (family.isEmpty()) {
-                break;
-            }
-
-            list.add(family);
+            cities.computeIfAbsent(city, x->new ArrayList<>()).add(family);
         }
 
-        // Read the house number
-        int houseNumber = scanner.nextInt();
+        System.out.println("Получение данных: ");
+        String city = scanner.nextLine();
+        if (cities.containsKey(city))
+            System.out.println(cities.get(city));
+        else
+            System.out.println("Неверно указан город");
 
-        if (0 <= houseNumber && houseNumber < list.size()) {
-            String familyName = list.get(houseNumber);
-            System.out.println(familyName);
-        }
     }
 }
