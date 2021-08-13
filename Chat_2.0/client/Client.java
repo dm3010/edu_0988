@@ -9,7 +9,7 @@ public class Client {
     private Scanner scanner;
     private final Runnable listener = () -> {
         try (DataInputStream in = new DataInputStream(socket.getInputStream())) {
-            while (true) {
+            while (!socket.isClosed()) {
                 System.out.print(in.readUTF() + "\n: ");
             }
         } catch (IOException e) {
@@ -24,19 +24,18 @@ public class Client {
                 input = scanner.nextLine();
                 out.writeUTF(input);
             }
-            while (!input.equals("exit"));
+            while (!socket.isClosed());
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     };
 
     public void start() {
         try {
             scanner = new Scanner(System.in);
-            socket = new Socket("localhost", 8188);
+            socket = new Socket("18.188.76.190", 8188);
             new Thread(listener).start();
             new Thread(writer).start();
-            System.out.print("Представьтесь, пожалуйста: ");
         } catch (IOException e) {
             e.printStackTrace();
         }
